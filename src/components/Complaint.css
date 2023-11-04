@@ -31,7 +31,18 @@
     padding-bottom: 20px;
 }
 
-input[type="text"] ,input[type="email"], input[type="password"]{
+#para{
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 50px;
+    padding: 20px;
+    border-radius: 10px;
+
+    background-color: #d7caede4;
+}
+
+input[type="text"],input[type="number"] ,input[type="email"], input[type="password"]{
     margin: 8px;
     margin-left: 5%;
     width: 30%;

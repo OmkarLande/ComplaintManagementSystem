@@ -7,6 +7,8 @@ import About from './pages/About';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import LoginSignup from './components/LoginSignup'
+import AllComplaints from './pages/AllComplaints';
+
 // import Navbar from './components/Navbar';
 function App() {
  
@@ -20,6 +22,7 @@ function App() {
     <Routes>
     <Route path="/" element={<Home />} />
       <Route path="/complaint" element={<Complaint/>}/>
+      <Route path="/allcomplaints" element={<AllComplaints/>}/>
       <Route path="/aboutus" element={<About/>}/>
       <Route path="/loginsingup" element={<LoginSignup/>}/>
     </Routes>

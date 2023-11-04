@@ -1,99 +1,86 @@
-import React, { useState } from 'react';
-// import './Complaint.css'
-import '../components/Complaint.css'
+import React, { useState } from "react";
+import "../components/Complaint.css";
+
 const Complaint = () => {
-  const [title, setTitle] = useState('');
-  const [address, setAddress] = useState('');
-  const [complaint, setComplaint] = useState('');
-  const [image, setImage] = useState(null);
-  const [complaints, setComplaints] = useState([]);
+  const [complaint, setComplaint] = useState({
+    title: "",
+    description: "",
+    location: "",
+    contactNo: "",
+    complainerName: "",
+  });
 
-  const handleTitleChange = (e) => {
-    setTitle(e.target.value);
+  let name, value;
+
+  const handleInputs = (e) => {
+    console.log(e);
+    name = e.target.name;
+    value = e.target.value;
+    setComplaint({ ...complaint, [name]: value });
   };
 
-  const handleAddressChange = (e) => {
-    setAddress(e.target.value);
-  };
+  const PostData = async (e) => {
+    //destructuring
+    const { title, description, location, contactNo, complainerName } =complaint;
 
-  const handleComplaintChange = (e) => {
-    setComplaint(e.target.value);
-  };
-
-  const handleImageChange = (e) => {
-    const selectedImage = e.target.files[0];
-    setImage(selectedImage);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (title.trim() === '' || address.trim() === '' || complaint.trim() === '') {
-      alert('Please fill in all fields.');
-      return;
-    }
-
-    const newComplaint = {
-      title: title,
-      address: address,
-      text: complaint,
-      image: image,
-    };
-
-    setComplaints([...complaints, newComplaint]);
-
-    // Reset form fields
-    setTitle('');
-    setAddress('');
-    setComplaint('');
-    setImage(null);
+    await fetch("http://localhost:4000/api/complaints", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title,
+        description,
+        location,
+        contactNo,
+        complainerName,
+      }),
+    });
   };
 
   return (
     <div className="Complaint">
       <p id="heading">Complaint</p>
-      <form className='complaintForm' onSubmit={handleSubmit}>
+      <form className="complaintForm">
         <input
           type="text"
           placeholder="Title"
-          value={title}
-          onChange={handleTitleChange}
+          name="title"
+          value={complaint.title}
+          onChange={handleInputs}
+        />
+        <textarea
+          type="text"
+          placeholder="Description"
+          name="description"
+          value={complaint.description}
+          onChange={handleInputs}
         />
         <input
           type="text"
           placeholder="Location"
-          value={address}
-          onChange={handleAddressChange}
-        />
-        <textarea
-          placeholder="Enter your complaint here"
-          value={complaint}
-          onChange={handleComplaintChange}
+          name="location"
+          value={complaint.location}
+          onChange={handleInputs}
         />
         <input
-          type="file"
-          accept="image/*"
-          onChange={handleImageChange}
+          type="number"
+          placeholder="Enter mobile number"
+          name="contactNo"
+          value={complaint.contactNo}
+          onChange={handleInputs}
         />
-        <button id="submit" type="submit">Submit</button>
+        <input
+          type="text"
+          placeholder="Enter your name"
+          name="complainerName"
+          value={complaint.complainerName}
+          onChange={handleInputs}
+        />
+        <button id="submit" type="submit" onClick={PostData}>
+          Submit
+        </button>
       </form>
-      <h2>Complaints</h2>
-      <ul>
-        {complaints.map((item, index) => (
-          <li key={index}>
-            <p><strong>Title:</strong> {item.title}</p> 
-            <p><strong>Address:</strong> {item.address}</p>
-            <p>{item.text}</p>
-            {item.image && (
-              <img
-                src={URL.createObjectURL(item.image)}
-                alt={`Complaint ${index}`}
-                width="200"
-              />
-            )}
-          </li>
-        ))}
-      </ul>
     </div>
   );
 };

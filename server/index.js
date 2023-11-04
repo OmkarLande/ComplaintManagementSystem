@@ -1,9 +1,12 @@
 const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
+const cors = require('cors')
+
 const database = require("./config/database");
 const complaintRoutes = require("./routes/complaint");
 const userRoutes = require("./routes/user");
+
 
 // port
 dotenv.config();
@@ -15,6 +18,9 @@ database.connect();
 //middlewares
 app.use(express.json());
 
+app.use(cors({
+  origin: 'http://localhost:3000'
+}))
 // Routers
 app.get("/", (req, res) => {
   return res.json({

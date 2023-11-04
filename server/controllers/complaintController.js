@@ -8,41 +8,29 @@ const User = require("../models/user")
 exports.createComplaint = async (req, res) => {
   try {
     
-    const { title, description, location, contactNo , name } = req.body;
-    // const userId = req.user.id; // Modify this according to your authentication method.
+    const { title, description, location, contactNo , complainerName } = req.body;
 
-    // if (!req.user || !req.user.id) {
-    //   return res.status(401).json({ error: 'User not authenticated.' });
-    // }
-
-    // const userId = req.user.id;
-
-    // const user = await User.findById(userId);
-
-    // if (!user) {
-    //   return res.status(404).json({ error: 'User not found.' });
-    // }
 
     const complaint = new Complaint({
       title,
       description,
-      status: 'open', // Set an initial status (customize as needed)
+      status: 'open',
       location,
       contactNo,
-      name
+      complainerName
     });
 
     //send Mail
       try{
         const emailResponse = await mailSender(
             "nagresharayu@gmail.com", complaint.title,complaintSender(
-                complaint.name, complaint.contactNo, complaint.title, complaint.description, complaint.location),
+                complaint.complainerName, complaint.contactNo, complaint.title, complaint.description, complaint.location),
                 );
                 console.log("Email sent successfully: ", emailResponse.response)
         }
     catch(error){
         console.log("Error while sending email:", error);
-        return res.status(500).json({
+        return res.status(501).json({
           success:false,
           message:'Error occured while sending email',
           error:error.message,
@@ -54,7 +42,7 @@ exports.createComplaint = async (req, res) => {
 
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'An error occurred while creating the complaint.' });
+    res.status(401).json({ error: 'An error occurred while creating the complaint.' });
   }
 };
 

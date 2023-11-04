@@ -9,10 +9,10 @@ require("dotenv").config();
 exports.signupUser = async(req, res) => {
    try {
     //data fetching
-    const {firstName,lastName, email, password, contactNo } = req.body;
+    const {firstName,lastName, email,  contactNo, password } = req.body;
 
     //validation
-    if(!firstName ||!lastName || !email || !password || !contactNo){
+    if(!firstName ||!lastName || !email || !contactNo || !password){
         return res.status(403).json({
             success: false,
             message:'All fields are reuired'
