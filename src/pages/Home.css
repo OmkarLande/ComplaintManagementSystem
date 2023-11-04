@@ -1,0 +1,13 @@
+.login-container{
+    position:relative;
+    
+}
+
+#welcome{
+    width: 500px;
+    margin-left: 0%;
+}
+
+.login-box{
+    margin-bottom: 50px;
+}

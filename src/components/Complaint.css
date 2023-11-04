@@ -1,0 +1,87 @@
+*{
+    margin: 0;
+    /* background-color: #b79ae7; */
+}
+
+#heading{
+    position: inherit;
+     /* background-color: #8554d4; */
+     margin-top: 10px;
+     font-size: 50px;
+     font-weight: bold;
+     padding-left: 10px;
+     padding-right: 10px;
+     padding-top: 5px;
+     padding-bottom: 0;
+     font-family: sans-serif;
+     color: #8554d4;
+     text-align: center;
+}
+
+.complaintForm{
+    display: flex;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 5px;
+    flex-direction: column;
+    background-color: #ddd9e2;
+    border: none;
+    border-radius: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+input[type="text"] ,input[type="email"], input[type="password"]{
+    margin: 8px;
+    margin-left: 5%;
+    width: 30%;
+    border-radius: 5px;
+    border: none;
+    background-color: #eceaef;
+    padding: 10px;
+    color: #463364;
+    height: 20px;
+}
+
+textarea{
+    margin-left: 5%;
+    width: 80%;
+    background-color: #eceaef;
+    border: none;
+}
+input[type="file"]{
+    margin-left: 5%;
+    width: 80%;
+    background-color: #eceaef;
+    border: none;
+}
+#submit{
+    width: 20%;
+    margin-left: 5%;
+    background-color: #8554d4;
+}
+
+
+.login{
+    display: flex;
+    margin-left: 30%;
+    margin-right: 30%;
+    padding: 5px;
+    flex-direction: column;
+    background-color: #ddd9e2;
+    border: none;
+    border-radius: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+}
+
+#Fname, #Femail, #pwd1, #pwd2{
+    width: 50%;
+}
+
+#submitlogin{
+    width: 50%;
+    margin-left: 5%;
+    background-color: #8554d4;
+}

@@ -1,0 +1,23 @@
+.box{
+    display: flex;
+    /* float: right; */
+    flex-direction: row;
+    background-color: #3c009d;
+}
+.li{
+    text-align: center;
+   margin: 10px;
+   width: 100px;
+   background-color: #965af6e4;
+   border: none;
+   border-radius: 10px;
+}
+
+.navText{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+

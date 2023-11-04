@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .signUpContainer{
+            display: flex;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 250px;
+            padding: 20px;
+            border: 1px solid #bab0b0;
+            border-radius: 10px;
+            border: none;
+            background-color: #d4d9da89; 
+            transform: translate(-50%,-50%);
+            box-shadow: 0px 2px 5px 5px rgba(0,0,0,0.5);
+        }
+    
+        .in{
+            margin: 4px;
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            margin-right: 5px;
+            border-radius: 10px;
+        }
+
+        #signUpSubmit{
+            width: 100%;
+            padding: 10px;
+            background-color: #54d8e4;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #signUpSubmit:hover{
+            background-color: #0056b3;
+        }
+
+        .lb1{
+            font-weight: bold;
+        }
+
+        #closeBtn{
+            position: absolute;
+            width: max-content;
+            right: 10px;
+            border-color: #bab0b0;
+            border-radius: 15px;
+        }
+        
+        #closeBtn:hover{
+            background-color: red;
+            color: white;
+        }
+
+        #signUpBtn{
+    
+            position: relative;
+            left: 5px;
+            width: 97%;
+            padding: 10px;
+            background-color: #54d8e4;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="signUpContainer">
+        <form id="signUpform" action="Homepage2.html">
+
+            <button id="closeBtn">x</button>
+            <br>
+
+            <lable class="lb1">Uername: </lable>
+            <input class="in" type="text" id="nm" name="nm" required>
+            
+            <lable class="lb1">Email: </lable>
+            <input type="email" class="in" id="em" name="em" required>
+
+            <lable class="lb1">Password: </lable>
+            <input type="password" class="in" id="pwd" name="pwd">
+
+            <label class="lb1" for="rm">Remember me?</label> <input type="checkbox">
+
+            <input type="submit" class="#signUpBtn" id="signUpSubmit" value="SignUp">
+        </form>
+    </div>
+</body>
+</html>
