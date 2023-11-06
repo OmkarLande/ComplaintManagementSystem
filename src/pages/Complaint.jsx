@@ -10,32 +10,43 @@ const Complaint = () => {
     complainerName: "",
   });
 
-  let name, value;
-
-  const handleInputs = (e) => {
-    console.log(e);
-    name = e.target.name;
-    value = e.target.value;
-    setComplaint({ ...complaint, [name]: value });
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setComplaint({
+      ...complaint,
+      [name]: value,
+    });
   };
 
-  const PostData = async (e) => {
-    //destructuring
-    const { title, description, location, contactNo, complainerName } =complaint;
+  const PostData = async () => {
+    const { title, description, location, contactNo, complainerName } =
+      complaint;
 
-    await fetch("http://localhost:4000/api/complaints", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        title,
-        description,
-        location,
-        contactNo,
-        complainerName,
-      }),
-    });
+    try {
+      const response = await fetch("http://localhost:4000/api/complaints", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title,
+          description,
+          location,
+          contactNo,
+          complainerName,
+        }),
+      });
+
+      if (response.ok) {
+        window.alert("Complaint submitted successfully.");
+        window.location.href = "/allcomplaints";
+        console.log("Complaint submitted successfully");
+      } else {
+        console.error("Complaint submission failed");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (
@@ -47,37 +58,37 @@ const Complaint = () => {
           placeholder="Title"
           name="title"
           value={complaint.title}
-          onChange={handleInputs}
+          onChange={handleInputChange}
         />
         <textarea
           type="text"
           placeholder="Description"
           name="description"
           value={complaint.description}
-          onChange={handleInputs}
+          onChange={handleInputChange}
         />
         <input
           type="text"
           placeholder="Location"
           name="location"
           value={complaint.location}
-          onChange={handleInputs}
+          onChange={handleInputChange}
         />
         <input
           type="number"
           placeholder="Enter mobile number"
           name="contactNo"
           value={complaint.contactNo}
-          onChange={handleInputs}
+          onChange={handleInputChange}
         />
         <input
           type="text"
           placeholder="Enter your name"
           name="complainerName"
           value={complaint.complainerName}
-          onChange={handleInputs}
+          onChange={handleInputChange}
         />
-        <button id="submit" type="submit" onClick={PostData}>
+        <button id="submit" type="button" onClick={PostData}>
           Submit
         </button>
       </form>

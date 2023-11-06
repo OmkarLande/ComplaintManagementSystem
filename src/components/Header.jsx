@@ -1,21 +1,39 @@
-import React from 'react'
-import './Header.css'
+import React from "react";
+import "./Header.css";
+import { NavLink } from "react-router-dom";
 
 function Header() {
   return (
-
-    <nav className='taskbar' >
-      <ul className='box' >
-        <li class="li"><a class="navText" href="/">Home</a></li>
-        <li class="li"><a class="navText" href="/aboutus">About</a></li>
-        <li class="li"><a class="navText" href="/allcomplaints">Complaints</a></li>
-        <li class="li"><a class="navText" href="/complaint">Create</a></li>
-        <li class="li"><a class="navText" href="/loginsingup">Sign Up</a></li>
-       
+    <nav className="taskbar">
+      <ul className="box">
+        <li className="li">
+          <NavLink className="navText" to="/">
+            Home
+          </NavLink>
+        </li>
+        <li className="li">
+          <NavLink className="navText" to="/aboutus">
+            About
+          </NavLink>
+        </li>
+        <li className="li">
+          <NavLink className="navText" to="/allcomplaints">
+            Complaints
+          </NavLink>
+        </li>
+        <li className="li">
+          <NavLink className="navText" to="/complaint">
+            Create
+          </NavLink>
+        </li>
+        <li className="li">
+          <NavLink className="navText" to="/loginsingup">
+            Sign Up
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );
 }
 
-
-export default Header
+export default Header;

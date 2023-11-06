@@ -1,54 +1,64 @@
-import react, { useState } from "react";
+import  { useState } from "react";
 import "./LoginSignup.css";
 
-
 const LoginSignup = () => {
-  const [signup, setSignup] = useState({
+  const [signup, setSignUp] = useState({
     firstName: "",
     lastName: "",
     email: "",
     contactNo: "",
     password: "",
-    cpassword: ""
+    cpassword: "",
   });
 
-  let name, value;
-
-  const handleInputs = (e) => {
-    console.log(e);
-    name = e.target.name;
-    value = e.target.value;
-    setSignup({ ...signup, [name]: value });
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setSignUp({
+      ...signup,
+      [name]: value,
+    });
   };
 
-  const PostData = async (e) => {
-    //destructuring
-    const { firstName, lastName, email, contactNo, password, cpassword } =signup;
-    if(cpassword === password){
-    await fetch("http://localhost:4000/user/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        firstName, 
-        lastName, 
-        email, 
-        contactNo, 
-        password
-      }),
-    });
-  }else{
-    window.alert('Enter same Password')
-  }
+  const PostData = async () => {
+    const { firstName, lastName, email, contactNo, password, cpassword } =
+      signup;
+
+    if (cpassword === password) {
+      try {
+        const response = await fetch("http://localhost:4000/user/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            firstName,
+            lastName,
+            email,
+            contactNo,
+            password,
+          }),
+        });
+
+        if (response.ok) {
+          window.alert("Sign up successful. You can now log in.");
+          window.location.href = "/";
+          // window.location.href = '/login';
+        } else {
+          console.error("Complaint submission failed");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    } else {
+      window.alert("Enter the same password");
+    }
   };
 
   return (
     <div className="form">
-
       <div className="Complaint">
         <p id="heading">Sign Up</p>
-        <form className="login" >
+        <form className="login">
           <input
             className="loginList"
             id="Fname"
@@ -56,7 +66,7 @@ const LoginSignup = () => {
             name="firstName"
             placeholder="first name"
             value={signup.firstName}
-              onChange={handleInputs}
+            onChange={handleInputChange}
           />
           <input
             className="loginList"
@@ -65,7 +75,7 @@ const LoginSignup = () => {
             type="text"
             placeholder="last name"
             value={signup.lastName}
-              onChange={handleInputs}
+            onChange={handleInputChange}
           />
           <input
             className="loginList"
@@ -74,7 +84,7 @@ const LoginSignup = () => {
             name="email"
             placeholder="Email"
             value={signup.email}
-              onChange={handleInputs}
+            onChange={handleInputChange}
           />
           <input
             className="loginList"
@@ -83,7 +93,7 @@ const LoginSignup = () => {
             name="contactNo"
             placeholder="Contact No."
             value={signup.contactNo}
-              onChange={handleInputs}
+            onChange={handleInputChange}
           />
           <input
             className="loginList"
@@ -92,7 +102,7 @@ const LoginSignup = () => {
             name="password"
             placeholder="Password"
             value={signup.password}
-              onChange={handleInputs}
+            onChange={handleInputChange}
           />
 
           <input
@@ -102,10 +112,10 @@ const LoginSignup = () => {
             name="cpassword"
             placeholder="Re-enter Password"
             value={signup.cpassword}
-              onChange={handleInputs}
+            onChange={handleInputChange}
           />
 
-          <button id="submitlogin" type="submit" onClick={PostData}>
+          <button id="submitlogin" type="button" onClick={PostData}>
             Create Account
           </button>
         </form>
