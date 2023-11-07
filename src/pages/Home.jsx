@@ -33,7 +33,7 @@ function Home() {
       });
       if (res.ok) {
         window.alert("Logged in SuccessFully");
-        window.location.href = "/allcomplaints";
+        window.location.href = "/aboutus";
         console.log("Logged in SuccessFully");
       } else {
         console.error("Login failed");
